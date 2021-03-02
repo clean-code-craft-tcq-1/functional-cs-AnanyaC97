@@ -15,9 +15,9 @@ public class BatteryCheckerFactors
     {
         bool TemperatureLimit;
         if ( temperature < 0 )
-            TemperatureLimit = PrintMinimumLimit("Temperature", 0);
+            TemperatureLimit = PrintMinimumLimit("Temperature", 0, temperature);
         else if( temperature > 45)
-            TemperatureLimit = PrintMaximumLimit("Temperature", 45);
+            TemperatureLimit = PrintMaximumLimit("Temperature", 45, temperature);
         else
             TemperatureLimit = PrintValid("Temperature", temperature);
         return TemperatureLimit;
@@ -26,9 +26,9 @@ public class BatteryCheckerFactors
     {
         bool stateOfChargeLimit;
         if (stateOfCharge < 20)
-            stateOfChargeLimit = PrintMinimumLimit("State of Charge", 20);
+            stateOfChargeLimit = PrintMinimumLimit("State of Charge", 20, stateOfCharge);
         else if (stateOfCharge > 80)
-            stateOfChargeLimit = PrintMaximumLimit("State of Charge", 80);
+            stateOfChargeLimit = PrintMaximumLimit("State of Charge", 80, stateOfCharge);
         else
             stateOfChargeLimit = PrintValid("State of Charge", stateOfCharge);
         return stateOfChargeLimit;
@@ -37,19 +37,19 @@ public class BatteryCheckerFactors
     {
         bool chargeRateLimit;
         if (chargeRate > 0.8)
-            chargeRateLimit = PrintMaximumLimit("Charge Rate", 0.8f);
+            chargeRateLimit = PrintMaximumLimit("Charge Rate", 0.8f, chargeRate);
         else
             chargeRateLimit = PrintValid("Charge Rate", chargeRate);
         return chargeRateLimit;
     }
-    static bool PrintMaximumLimit(string batteryFactor, float MaxBatteryValue)
+    static bool PrintMaximumLimit(string batteryFactor, float MaxBatteryValue, float batteryValue)
     {
-        Console.WriteLine("Battery Factor - " + batteryFactor + " is out of range and has exceeded its maximum limit " + MaxBatteryValue + " !");
+        Console.WriteLine("Battery Factor: {0} {1} is out of range and has exceeded its maximum limit {2} !", batteryFactor, batteryValue, MaxBatteryValue);
         return false;
     }
-    static bool PrintMinimumLimit(string batteryFactor, float MinBatteryValue)
+    static bool PrintMinimumLimit(string batteryFactor, float MinBatteryValue, float batteryValue)
     {
-        Console.WriteLine("Battery Factor - " + batteryFactor + " is out of range and has failed its minimum limit " + MinBatteryValue + " !");
+        Console.WriteLine("Battery Factor: {0} {1} is out of range and has failed its minimum limit {2} !", batteryFactor, batteryValue, MinBatteryValue);
         return false;
     }
     static bool PrintValid(string batteryFactor, float BatteryValue)
