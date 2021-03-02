@@ -17,7 +17,7 @@ public class BatteryCheckerFactors
         if ( temperature < 0 )
             TemperatureLimit = PrintMinimumLimit("Temperature", 0);
         else if( temperature > 45)
-            TemperatureLimit = PrintMinimumLimit("Temperature", 45);
+            TemperatureLimit = PrintMaximumLimit("Temperature", 45);
         else
             TemperatureLimit = PrintValid("Temperature", temperature);
         return TemperatureLimit;
