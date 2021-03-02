@@ -54,7 +54,7 @@ public class BatteryCheckerFactors
     }
     static bool PrintValid(string batteryFactor, float BatteryValue)
     {
-        Console.WriteLine("Battery Factor: " + batteryFactor + BatteryValue + " is in the specified limit !");
+        Console.WriteLine("Battery Factor: " + batteryFactor + " " + BatteryValue + " is in the specified limit !");
         return true;
     }
     static void ExpectTrue(bool expression)
@@ -81,8 +81,6 @@ public class BatteryCheckerFactors
         ExpectFalse(batteryIsOk(50, 85, 0.0f));
         ExpectFalse(batteryIsOk(-50, 10, 0.9f));
         ExpectFalse(batteryIsOk(30, 100, 0.0f));
-        ExpectTrue(batteryIsOk(-30, 90, 0.6f)); //To verify whether ExpectTrue works as expected and exits
-        ExpectFalse(batteryIsOk(30, 50, 0.5f)); //To verify whether ExpectFalse works as expected and exits
         Console.WriteLine("All ok");
         return 0;
     }
