@@ -2,7 +2,7 @@
   <ItemGroup>
     <Compile Include="checker.cs"/>
     <Compile Include="BatteryFactor.cs"/>
-    <Compile Include="BatteryStatusDisplay.cs/>
+    <Compile Include="BatteryStatusDisplay.cs"/>
   </ItemGroup>
   <Target Name="Build">
     <Csc Sources="@(Compile)"/>  
