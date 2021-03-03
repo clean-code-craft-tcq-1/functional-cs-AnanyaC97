@@ -3,20 +3,27 @@ using System.Diagnostics;
 
 namespace BatteryManagement
 {
-    class BatteryCheckerFactors
+    public class BatteryCheckerFactors
     {
-        public static bool batteryIsOk(float temperature, float stateOfCharge, float chargeRate)
+        public float minTemperatureLimit = 0;
+        public float maxTemperatureLimit = 45;
+        public float minStateOfCharge = 20;
+        public float maxStateOfCharge = 80;
+        public float minChargeRate = 0.5f;
+        public float maxChargeRate = 0.8f;
+
+        public bool batteryIsOk(float temperature, float stateOfCharge, float chargeRate)
         {
             BatteryFactor batteryFactor = new BatteryFactor();
 
-            bool optimumTemperatureLimit = batteryFactor.CheckTemperature(temperature);
-            bool optimumStateOfCharge = batteryFactor.CheckStateOfCharge(stateOfCharge);
-            bool optimumChargeRate = batteryFactor.CheckChargeRate(chargeRate);
+            bool optimumTemperatureLimit = batteryFactor.CheckBatteryCondition("Temperature", minTemperatureLimit, maxTemperatureLimit, temperature);
+            bool optimumStateOfCharge = batteryFactor.CheckBatteryCondition("State of Charge", minStateOfCharge, maxStateOfCharge, stateOfCharge);
+            bool optimumChargeRate = batteryFactor.CheckBatteryCondition("Charge Rate", minChargeRate, maxChargeRate, chargeRate);
 
             return (optimumTemperatureLimit && optimumStateOfCharge && optimumChargeRate);
         }
 
-        private static int Main()
+        private int Main()
         {
             BatteryStatusDisplay batteryStatusDisplay = new BatteryStatusDisplay();
 
