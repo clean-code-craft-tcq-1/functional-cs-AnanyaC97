@@ -6,24 +6,23 @@ namespace BatteryManagement
 {
     public class BatteryFactor
     {
-
-        BatteryStatusDisplay BatteryStatusDisplay = new BatteryStatusDisplay();
-        public bool CheckBatteryCondition(string BatteryFactor, float minBatteryValue, float maxBatteryValue, float BatteryValue)
+        public bool CheckBatteryCondition(string BatteryState, float MinBatteryValue, float MaxBatteryValue, float BatteryValue)
         {
-            bool BatteryStatus;
-            if (BatteryValue < minBatteryValue)
+            if (BatteryValue < MinBatteryValue)
             {
-                BatteryStatus = BatteryStatusDisplay.PrintMinimumLimit(BatteryFactor, minBatteryValue, BatteryValue);
+                BatteryStatusDisplay.PrintMinimumLimit(BatteryState, MinBatteryValue, BatteryValue);
+                return false;
             }
-            else if (BatteryValue > maxBatteryValue)
+            else if (BatteryValue > MaxBatteryValue)
             {
-                BatteryStatus = BatteryStatusDisplay.PrintMaximumLimit(BatteryFactor, maxBatteryValue, BatteryValue);
+                BatteryStatusDisplay.PrintMaximumLimit(BatteryState, MaxBatteryValue, BatteryValue);
+                return false;
             }
             else
             {
-                BatteryStatus = BatteryStatusDisplay.PrintValid(BatteryFactor, BatteryValue);
+                BatteryStatusDisplay.PrintValid(BatteryState, BatteryValue);
+                return true;
             }
-            return BatteryStatus;
         }
     }
 }

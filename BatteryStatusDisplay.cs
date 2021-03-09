@@ -6,22 +6,19 @@ namespace BatteryManagement
 {
     public class BatteryStatusDisplay
     {
-        public bool PrintMaximumLimit(string batteryFactor, float MaxBatteryValue, float batteryValue)
+        public static void PrintMaximumLimit(string BatteryState, float MaxBatteryValue, float BatteryValue)
         {
-            Console.WriteLine("Battery Factor: {0} {1} is out of range and has exceeded its maximum limit {2} !", batteryFactor, batteryValue, MaxBatteryValue);
-            return false;
+            Console.WriteLine("Battery Factor: {0} {1} is out of range and has exceeded its maximum limit {2} !", BatteryState, BatteryValue, MaxBatteryValue);
         }
-        public bool PrintMinimumLimit(string batteryFactor, float MinBatteryValue, float batteryValue)
+        public static void PrintMinimumLimit(string BatteryState, float MinBatteryValue, float BatteryValue)
         {
-            Console.WriteLine("Battery Factor: {0} {1} is out of range and has failed its minimum limit {2} !", batteryFactor, batteryValue, MinBatteryValue);
-            return false;
+            Console.WriteLine("Battery Factor: {0} {1} is out of range and has failed its minimum limit {2} !", BatteryState, BatteryValue, MinBatteryValue);
         }
-        public bool PrintValid(string batteryFactor, float BatteryValue)
+        public static void PrintValid(string BatteryState, float BatteryValue)
         {
-            Console.WriteLine("Battery Factor: " + batteryFactor + " " + BatteryValue + " is in the specified limit !");
-            return true;
+            Console.WriteLine("Battery Factor: " + BatteryState + " " + BatteryValue + " is in the specified limit !");
         }
-        public void ExpectTrue(bool expression)
+        public static void ExpectTrue(bool expression)
         {
             if (!expression)
             {
@@ -30,7 +27,7 @@ namespace BatteryManagement
             }
             Console.WriteLine();
         }
-        public void ExpectFalse(bool expression)
+        public static void ExpectFalse(bool expression)
         {
             if (expression)
             {
